@@ -204,6 +204,7 @@ public class Lists {
         hairColours.add("Copper");
         hairColours.add("Black");
         hairColours.add("Strawberry Blonde");
+        hairColours.add("Brown");
         hairColoursLength = hairColours.size();
         hairColours.sort(String::compareToIgnoreCase);
     }

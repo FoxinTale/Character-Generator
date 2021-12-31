@@ -8,42 +8,25 @@ public class Generate {
         return new String[]{colourName, colourCode};
     }
 
-    public static String getName(int value){
-        /*
-        If the input value is less than 50, favour male names, but female names are still possible. The lower the value the higher chance of male names.
-        If the input value is more than 50, favour female names, but male names are still possible.
-        If it is exactly 50, then flip a virtual coin, basically.
-         */
-        String name = "";
-        int num;
-        if(value < 50){
-            if(value == 0){
-                System.out.println(getMaleName());
-            } else {
-                int newValue = value *  2;
-                //System.out.println(newValue);
-                num = ThreadLocalRandom.current().nextInt(0, 50);
-                System.out.println("Generated Number: " + num + " || " + "Value: " + value);
-                if(num <= value){
-                    System.out.println("Male name here");
-                    //name = getMaleName();
-                } else {
-                    System.out.println("Female name here");
-                    //name = getFemaleName();
-                }
-            }
-        } else if( value == 50){
-            num = ThreadLocalRandom.current().nextInt(0, 100);
-            if(num < 50){
-
-            } else{
-
-            }
-        } else {
-            //
+    public static String getName(){
+        StringBuilder name = new StringBuilder();
+        name.append(getNamePart());
+        name.append(" ");
+        if(GUI.genMiddleName){
+            name.append(getNamePart());
+            name.append(" ");
         }
+        name.append(getSurname());
+        return name.toString();
+    }
 
-        return name;
+    public static String getNamePart(){
+        int num = ThreadLocalRandom.current().nextInt(101);
+        if(num <= 50){
+            return getMaleName();
+        } else {
+            return getFemaleName();
+        }
     }
 
     public static String getFemaleName(){
@@ -69,5 +52,26 @@ public class Generate {
     public static String getSexuality(){
         int num = ThreadLocalRandom.current().nextInt(Lists.sexualitiesLength);
         return Lists.sexualities.get(num);
+    }
+
+    public static String getNaturalHair(){
+        int num = ThreadLocalRandom.current().nextInt(Lists.hairColoursLength);
+        return Lists.hairColours.get(num);
+    }
+
+    public static String[] getHairColour(){
+        int r = ThreadLocalRandom.current().nextInt(255);
+        int g = ThreadLocalRandom.current().nextInt(255);
+        int b = ThreadLocalRandom.current().nextInt(255);
+
+        String colourHex = String.format("#%02x%02x%02x", r, g, b);
+        String[] hairColourArray= new String[4];
+
+        hairColourArray[0] = Integer.toString(r);
+        hairColourArray[1] = Integer.toString(g);
+        hairColourArray[2] = Integer.toString(b);
+        hairColourArray[3] = colourHex;
+
+        return hairColourArray;
     }
 }
