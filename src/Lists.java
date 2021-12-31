@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// I have these values hardcoded internally instead of reading from text files mainly because I have never been able to figure out how to bundle assets within the jar file itself.
+// These are in their own file because, well...look at them. There's a lot of text and crap.
 public class Lists {
     static String[] femaleNames = {"Aaliyah","Aarushi","Abagail","Abbey","Abbi","Abbie","Abby","Abi","Abia","Abigail","Abree","Abrianna","Abrielle","Aby","Acacia","Ada","Adalia","Adaline","Adalyn","Addie","Addilyn","Addison","Adelaide","Adele","Adelene","Adelia","Adelina","Adeline","Adelynn","Adreanna","Adriana","Adrianna","Adrianne","Adrienne","Aerona","Agatha","Aggie","Agnes","Aida","Aileen","Ailsa","Aimee","Aine","Ainsleigh","Ainsley","Aisha","Aisling","Aislinn","Aislynn","Alaina","Alana",
             "Alanis","Alanna","Alannah","Alaska","Alayah","Alayna","Alba","Albany","Alberta","Aleah","Alecia","Aleisha","Alejandra","Alena","Alessandra","Alessia","Alex","Alexa","Alexandra","Alexandria","Alexia","Alexis","Alexus","Ali","Alia","Alice","Alicia","Alina","Alisa","Alisha","Alison","Alissa","Alivia","Aliyah","Aliza","Alize","Alka","Allie","Allison","Ally","Allyson","Alma","Alondra","Alya","Alycia","Alyshialynn","Alyson","Alyssa","Alyssia","Amalia",
@@ -117,17 +119,12 @@ public class Lists {
             "Wrenn","Wright","Wyard","Wyatt","Wyghtham","Wylde","Wymer","Wyville","Yahtzee","Yamano","Yardley","Yashiro","Yate","Yaxley","Yeardley","Yelverton","Yokohama","York","Yorke","Yorkes","Yornold","Youkilis","Young","Yuichi","Yula","Yuley","Yuudai","Zelretch","Zephiel","Zerg","Zharkov"
     };
 
-    static String[] genders = { "Trans Man", "Trans Woman", "Male", "Female", "Genderfluid", "Genderflux",
+    static String[] aaaaaaaaaaaaaa = { "Trans Man", "Trans Woman", "Male", "Female", "Genderfluid", "Genderflux",
             "Two-Spirit", "Non-Binary", "Agender", "Bigender", "PolyGender", "Pangender", "Intersex", "Demiboy",
             "Demigirl" };
 
-    static String[] sexuality = {"Gay/Lesbian","Straight","Polysexual","Pansexual","Asexual","Graysexual","Demisexual"};
-
     static String[] romantic = {"Aromantic","Biromantic","Heteroromantic","Homoromantic","Panromantic","Polyromantic",
             "Greyromantic","Demiromantic"};
-
-    static String[] hair = {"White","Auburn","Light Brown","Medium Brown","Dark Brown","Light Blonde","Meduim Blonde","Red",
-            "Chestnut","Golden Blonde","Copper","Black","Strawberry Blonde"};
 
     static String[] posTraits = {"Active","Adaptable","Admirable","Adventerous","Agreeable","Alert","Allocentric","Amiable",
             "Anticipative","Appreciative","Articulate","Aspiring","Attractive","Balanced","Benevolent",
@@ -163,14 +160,19 @@ public class Lists {
             "Tactless","Tense","Thievish","Thoughtless","Timid","Troublesome","Unconvincing","Uncooperative",
             "Unimaginative","Unreliable","Unstable","Vague","Vulnerable","Weak"};
 
-    static HashMap<String, String> coloursMap = new HashMap();
-    static ArrayList<String> colourNames = new ArrayList<String>();
+    static HashMap<String, String> coloursMap = new HashMap<>();
+    static ArrayList<String> colourNames = new ArrayList<>();
+    static ArrayList<String> hairColours = new ArrayList<>();
+    static ArrayList<String> sexualities = new ArrayList<>();
+    static ArrayList<String> genders = new ArrayList<>();
 
     static Integer femNamesLength;
     static Integer maleNamesLength;
     static Integer surnamesLength;
     static Integer colourNamesLength;
+    static Integer hairColoursLength;
     static Integer gendersLength;
+    static Integer sexualitiesLength;
     static Integer posTraitsLength;
     static Integer negTraitsLength;
 
@@ -178,15 +180,38 @@ public class Lists {
         femNamesLength = femaleNames.length;
         maleNamesLength = maleNames.length;
         surnamesLength = surnames.length;
-        gendersLength = genders.length;
         posTraitsLength = posTraits.length;
         negTraitsLength = negTraits.length;
+
         initColours();
+        initHairColours();
+        initSexualities();
+        initGenders();
     }
 
+    // Chganged to string array list from string array and added items because that makes it easier to add content in the future.
+    public static void initHairColours(){
+        hairColours.add("White");
+        hairColours.add("Auburn");
+        hairColours.add("Light Brown");
+        hairColours.add("Medium Brown");
+        hairColours.add("Dark Brown");
+        hairColours.add("Light Blonde");
+        hairColours.add("Medium Blonde");
+        hairColours.add("Red");
+        hairColours.add("Chestnut");
+        hairColours.add("Golden Blonde");
+        hairColours.add("Copper");
+        hairColours.add("Black");
+        hairColours.add("Strawberry Blonde");
+        hairColoursLength = hairColours.size();
+        hairColours.sort(String::compareToIgnoreCase);
+    }
+
+    // This will probably end up being the eye colours.
     public static void initColours(){
         // These are actually just CSS colours from: https://www.w3schools.com/cssref/css_colors.asp
-        // This data structure, means I can add and remove stuff freely if colours turn out to suck.
+        // This data structure, means I can add and remove stuff freely if colours turn out to suck, or I wish to add more colours.
         coloursMap.put("Alice Blue","#F0F8FF");
         coloursMap.put("Antique White","#FAEBD7");
         coloursMap.put("Aqua","#00FFFF");
@@ -333,5 +358,37 @@ public class Lists {
         colourNames.sort(String::compareToIgnoreCase);
 
         colourNamesLength = colourNames.size();
+    }
+
+    public static void initSexualities(){
+        sexualities.add("Gay or Lesbian");
+        sexualities.add("Straight");
+        sexualities.add("Polysexual");
+        sexualities.add("Pansexual");
+        sexualities.add("Asexual");
+        sexualities.add("Greysexual");
+        sexualities.add("Demisexual");
+        sexualitiesLength = sexualities.size();
+        sexualities.sort(String::compareToIgnoreCase);
+    }
+
+    public static void initGenders(){
+        genders.add("Trans Man");
+        genders.add("Trans Woman");
+        genders.add("Male");
+        genders.add("Female");
+        genders.add("Genderfluid");
+        genders.add("Genderflux");
+        genders.add("Demigirl");
+        genders.add("Demiboy");
+        genders.add("Intersex");
+        genders.add("Agender");
+        genders.add("Non-Binary");
+        genders.add("Two-Spirit");
+        genders.add("Bigender");
+        genders.add("Pangender");
+        genders.add("PolyGender");
+        gendersLength = genders.size();
+        genders.sort(String::compareToIgnoreCase);
     }
 }
