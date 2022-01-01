@@ -119,10 +119,6 @@ public class Lists {
             "Wrenn","Wright","Wyard","Wyatt","Wyghtham","Wylde","Wymer","Wyville","Yahtzee","Yamano","Yardley","Yashiro","Yate","Yaxley","Yeardley","Yelverton","Yokohama","York","Yorke","Yorkes","Yornold","Youkilis","Young","Yuichi","Yula","Yuley","Yuudai","Zelretch","Zephiel","Zerg","Zharkov"
     };
 
-    static String[] aaaaaaaaaaaaaa = { "Trans Man", "Trans Woman", "Male", "Female", "Genderfluid", "Genderflux",
-            "Two-Spirit", "Non-Binary", "Agender", "Bigender", "PolyGender", "Pangender", "Intersex", "Demiboy",
-            "Demigirl" };
-
     static String[] romantic = {"Aromantic","Biromantic","Heteroromantic","Homoromantic","Panromantic","Polyromantic",
             "Greyromantic","Demiromantic"};
 
@@ -205,6 +201,7 @@ public class Lists {
         hairColours.add("Black");
         hairColours.add("Strawberry Blonde");
         hairColours.add("Brown");
+
         hairColoursLength = hairColours.size();
         hairColours.sort(String::compareToIgnoreCase);
     }
@@ -249,7 +246,7 @@ public class Lists {
         coloursMap.put("Dark Sea Green","#8FBC8F");
         coloursMap.put("Dark Slate Blue","#483D8B");
         coloursMap.put("Dark Slate Grey","#2F2F2F");
-        coloursMap.put("Dark Turquoise","00CED1");
+        coloursMap.put("Dark Turquoise","#00CED1");
         coloursMap.put("Dark Violet","#9400D3");
         coloursMap.put("Deep Pink","#FF1493");
         coloursMap.put("Deep Sky Blue","#00BFFF");
@@ -369,6 +366,7 @@ public class Lists {
         sexualities.add("Asexual");
         sexualities.add("Greysexual");
         sexualities.add("Demisexual");
+
         sexualitiesLength = sexualities.size();
         sexualities.sort(String::compareToIgnoreCase);
     }
@@ -389,6 +387,7 @@ public class Lists {
         genders.add("Bigender");
         genders.add("Pangender");
         genders.add("PolyGender");
+
         gendersLength = genders.size();
         genders.sort(String::compareToIgnoreCase);
     }

@@ -10,14 +10,18 @@ public class GUI {
     static boolean genMiddleName = false;
     static boolean useNaturalHair = true;
     static boolean doSexuality = true;
-    static int posTraitsCount = 2;
-    static int negTraitsCount = 2;
     static String[] hairColourInfo;
 
     public static void createGUI(){
         Color panelColour =  Color.decode(Lists.coloursMap.get("Lavender"));
         Color mainColour =  Color.decode(Lists.coloursMap.get("Azure"));
         ArrayList<JTextField> textBoxes = new ArrayList<>();
+
+        String[] numberStrings = new String[4];
+
+        for(int i = 0; i < 4; i++){
+            numberStrings[i] = (Integer.toString(i + 2));
+        }
 
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -31,6 +35,8 @@ public class GUI {
         JLabel negTraitsLabel = new JLabel("Negative Traits: ");
         JLabel eyeColourLabel = new JLabel("Eye Colour: ");
         JLabel hairColourLabel = new JLabel("Hair Colour: ");
+        JLabel posTraitOptionsLabel = new JLabel("Positive Traits: ");
+        JLabel negTraitOptionsLabel = new JLabel("Negative Traits: ");
 
         JPanel namePanel = new RoundedPanel(5, panelColour);
         JPanel mainPanel = new RoundedPanel(10, mainColour);
@@ -47,6 +53,8 @@ public class GUI {
 
         JCheckBox middleNameCheck = new JCheckBox("Generate Middle Name.");
         JCheckBox naturalHairCheck = new JCheckBox("Natural Hair Colours.", true);
+        JComboBox posTraitOptions = new JComboBox(numberStrings);
+        JComboBox negTraitOptions = new JComboBox(numberStrings);
 
         JTextField nameBox = new JTextField();
         JTextField genderBox = new JTextField();
@@ -84,6 +92,8 @@ public class GUI {
         negTraitsLabel.setBounds(20, 130, 100, 25);
         eyeColourLabel.setBounds(20, 165, 100, 25);
         hairColourLabel.setBounds(20, 200, 100, 25);
+        posTraitOptionsLabel.setBounds(20, 340, 150, 25);
+        negTraitOptionsLabel.setBounds(220, 340, 150, 25);
 
         nameBox.setBounds(75, 26, 500, 25);
         genderBox.setBounds(75, 61, 225, 25);
@@ -103,6 +113,8 @@ public class GUI {
 
         middleNameCheck.setBounds(20, 310, 200, 20);
         naturalHairCheck.setBounds(220, 310, 200, 20);
+        posTraitOptions.setBounds(115, 342, 50, 20);
+        negTraitOptions.setBounds(315, 342, 50, 20);
 
         namePanel.setBounds(15,23, 595, 30);
         eyeColour.setBounds(450, 168, 150, 20);
@@ -126,11 +138,17 @@ public class GUI {
 
         eyeColourPanel.setToolTipText("<html>If you see an eye colour here that makes you question if it really should be an eye colour, please do let me know. <br> I can easily remove things in a minor update.</html>");
         naturalHairCheck.setToolTipText("<html>Leave selected for \"natural\" hair colours. <br> Uncheck to use the entire RGB spectrum for hair colours.</html>");
+        posTraitOptionsLabel.setToolTipText("How many positive traits to generate.");
+        negTraitOptionsLabel.setToolTipText("How many negative traits to generate.");
 
         ActionListener buttonDo = e -> {
             nameBox.setText(Generate.getName());
             genderBox.setText(Generate.getGender());
             sexualityBox.setText(Generate.getSexuality());
+
+            posTraitsBox.setText(Generate.getPosTraits(posTraitOptions.getSelectedItem().toString()));
+            negTraitsBox.setText(Generate.getNegTraits(negTraitOptions.getSelectedItem().toString()));
+
 
             String[] eyeColourArr = Generate.getColour();
             eyeColour.setBackground(Color.decode(eyeColourArr[1]));
@@ -163,6 +181,8 @@ public class GUI {
         window.add(hairColour);
         window.add(middleNameCheck);
         window.add(naturalHairCheck);
+        window.add(posTraitOptions);
+        window.add(negTraitOptions);
 
         window.add(nameLabel);
         window.add(genderLabel);
@@ -171,6 +191,8 @@ public class GUI {
         window.add(negTraitsLabel);
         window.add(eyeColourLabel);
         window.add(hairColourLabel);
+        window.add(posTraitOptionsLabel);
+        window.add(negTraitOptionsLabel);
 
         window.add(namePanel);
         window.add(genderPanel);

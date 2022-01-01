@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Generate {
@@ -74,4 +75,34 @@ public class Generate {
 
         return hairColourArray;
     }
+
+    public static String getPosTraits(String option){
+        int amount = Integer.parseInt(option);
+        String[] traits = new String[amount];
+
+        for(int i =0; i < amount; i++){
+            traits[i] = getPosTrait();
+        }
+        return Arrays.toString(traits).replace('[', ' ').replace(']', ' ').strip();
+    }
+
+    public static String getNegTraits(String option){
+        int amount = Integer.parseInt(option);
+        String[] traits = new String[amount];
+
+        for(int i =0; i < amount; i++){
+            traits[i] = getNegTrait();
+        }
+        return Arrays.toString(traits).replace('[', ' ').replace(']', ' ').strip();
+    }
+
+    public static String getPosTrait(){
+        int num = ThreadLocalRandom.current().nextInt(Lists.posTraitsLength);
+        return Lists.posTraits[num];
+    }
+    public static String getNegTrait(){
+        int num = ThreadLocalRandom.current().nextInt(Lists.negTraitsLength);
+        return Lists.negTraits[num];
+    }
+
 }
